@@ -3,13 +3,16 @@ const bodyParser = require("body-parser");
 const app = express();
 const env = require("dotenv");
 const rootRouter = require("./routes/index");
-
+const cors = require('cors');
 const PORT = process.env.PORT || 3000;
 
-app.use(bodyParser.json());
+// Ensure CORS headers are applied to all routes
+app.use(cors());
+
+app.use(express.json());
 app.use("/api/v1", rootRouter)
 
-// Checking for everything are up
+// Health check route
 app.get('/', (req, res) => {
     res.send("Welcome to the Simple API!");
 });
