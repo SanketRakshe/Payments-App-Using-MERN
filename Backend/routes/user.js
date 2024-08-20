@@ -52,5 +52,41 @@ router.post("/signup", async (req, res) => {
 })
 
 
+const signinBody = zod.object({
+    username: zod.string().email(),
+    password: zod.string(),
+})
+
+router.post("/signin", async (req, res) => {
+    const { success } = signinBody.safeParse(req.body);
+
+    if(!success) {
+        return res.status(411).json({
+            message: "Email already taken / Invalid inputs"
+        });
+    }
+
+    const user = await User.findOne({
+        username: req.body.username,
+        password: req.body.password
+    });
+
+    if(user) {
+        const token = jwt.sign({
+            userId: user._id,
+        }, JWT_SECRET);
+
+        res.json({
+            token: token,
+            message: "User authenticated successfully"
+        })
+        return ;
+    }
+
+    res.status(411).json({
+        message: "Invalid username or password"
+    })
+})
+
 
 module.exports = router;
