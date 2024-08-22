@@ -7,6 +7,10 @@ const { authMiddleware } = require("../middleware");
 
 const router = express.Router();
 
+router.get('/', (req, res) => {
+    res.json({ message: 'Welcome to the User API!' });
+})
+
 const signupBody = zod.object({
     username: zod.string().email(),
     firstname: zod.string(),
