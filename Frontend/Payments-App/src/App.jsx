@@ -4,25 +4,24 @@ import {
   Routes,
 } from "react-router-dom";
 import { Signup } from "./pages/Signup";
-import { Signin } from "./pages/Signin";
+import { Signin } from "./pages/signin";
 import { Dashboard } from "./pages/Dashboard";
 import { SendMoney } from "./pages/SendMoney";
-import { Balance } from "./components/Balance";
+import { Users } from "./components/Users";
 
 function App() {
   return (
     <>
        <BrowserRouter>
         <Routes>
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/Signup" element={<Signup />} />
+          <Route path="/Signin" element={<Signin />} />
+          <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/send" element={<SendMoney />} />
         </Routes>
       </BrowserRouter>
 
-      <Dashboard />
-      <Balance />
+      <Users />
     </>
   )
 }
