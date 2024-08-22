@@ -12,7 +12,7 @@ app.use(cors());
 
 app.use(express.json());
 app.use("/api/v1", rootRouter)
-app.use("api/v1/account", accountRouter);
+app.use("api/v1/", accountRouter);
 
 // Health check route
 app.get('/', (req, res) => {
